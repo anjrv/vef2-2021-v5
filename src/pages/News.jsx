@@ -1,4 +1,10 @@
+import React from "react";
+import Helmet from "react-helmet";
 
 export function NewsPage() {
-  // TODO útfæra fréttasíðu
+  return (
+    <div>
+      <Helmet title="Fréttir" />
+    </div>
+  );
 }

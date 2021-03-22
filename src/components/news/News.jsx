@@ -48,18 +48,23 @@ export function News({ category }) {
     return <p>Sæki gögn...</p>;
   }
 
-  const news = Array.from(data);
-
+  if (data) {
   return (
     <div>
-      <h2>{news.title}</h2>
+      <h2>{data.title}</h2>
       <ul>
-        { // news.items.map((item) => {
-          //   return <li></li>;
-          // })
-        }
+      {data.items.map((item) => {
+          return <li><a href={item.link}>{item.title}</a></li>;
+        })}
       </ul>
-      <p><NavLink to='/'>Allar fréttir</NavLink></p>
+      <p>
+        <NavLink to="/">Allar fréttir</NavLink>
+      </p>
     </div>
   );
+  }
+
+  return (
+    <p>Fail.</p>
+  )
 }

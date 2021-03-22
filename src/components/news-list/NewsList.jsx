@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+
+import { News } from '../news/News'
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -44,15 +45,14 @@ export function NewsList() {
   }
 
   const newslist = Array.from(data);
+  console.log(newslist);
 
   return (
     <div>
       {newslist.map((item) => {
         return (
           <div>
-            <h2>{item.title}</h2>
-            <p><NavLink to={`/${item.id}`}>Allar fréttir</NavLink></p>
-            {console.log(item.children)}
+            <News category={item.id} quantity={5} expandable={true} />
           </div>
         );
       })}

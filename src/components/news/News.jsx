@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 News.propTypes = {
   category: PropTypes.string.isRequired,
+  quantity: PropTypes.number,
+  expandable: PropTypes.bool,
 };
 
-export function News({ category }) {
+export function News({ category, quantity, expandable }) {
+  const routes = {
+    "Allar fréttir": "allar",
+    Innlent: "innlent",
+    "Erlendar fréttir": "erlent",
+    Íþróttir: "ithrottir",
+    Menning: "menning",
+  };
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(false);
@@ -41,7 +51,12 @@ export function News({ category }) {
   }, [category]);
 
   if (error) {
-    return <p>Villa kom upp: {error}</p>;
+    return (
+      <div>
+        <h2>Villa kom upp!</h2>
+        <p>{error}</p>
+      </div>
+    );
   }
 
   if (loading) {
@@ -49,22 +64,41 @@ export function News({ category }) {
   }
 
   if (data) {
-  return (
-    <div>
-      <h2>{data.title}</h2>
-      <ul>
-      {data.items.map((item) => {
-          return <li><a href={item.link}>{item.title}</a></li>;
-        })}
-      </ul>
-      <p>
-        <NavLink to="/">Allar fréttir</NavLink>
-      </p>
-    </div>
-  );
+    const nextPath = expandable ? `/${routes[data.title]}` : "/";
+    let articles = data.items;
+    if (quantity) {
+      articles = articles.slice(0, quantity);
+    }
+
+    return (
+      <div>
+        <h2>{data.title}</h2>
+        <ul>
+          {articles.map((item) => {
+            return (
+              <li>
+                <a href={item.link}>{item.title}</a>
+              </li>
+            );
+          })}
+        </ul>
+        <p>
+          <Link
+            to={{
+              pathname: nextPath,
+            }}
+          >
+            {expandable ? "Allar fréttir" : "Til baka"}
+          </Link>
+        </p>
+      </div>
+    );
   }
 
   return (
-    <p>Fail.</p>
-  )
+    <div>
+      <h2>Villa kom upp!</h2>
+      <p>Gat ekki sótt gögn.</p>
+    </div>
+  );
 }

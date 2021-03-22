@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 News.propTypes = {
   category: PropTypes.string.isRequired,
-}
+};
 
 export function News({ category }) {
   const [loading, setLoading] = useState(false);
@@ -20,15 +21,15 @@ export function News({ category }) {
       let json;
 
       try {
-        const result = await fetch(`${apiUrl}/category`);
+        const result = await fetch(`${apiUrl}${category}`);
 
         if (!result.ok) {
-          throw new Error('Result ekki í lagi');
+          throw new Error("Result ekki í lagi");
         }
 
         json = await result.json();
       } catch (e) {
-        setError('Gat ekki sótt gögn.');
+        setError("Gat ekki sótt gögn.");
         return;
       } finally {
         setLoading(false);
@@ -37,23 +38,28 @@ export function News({ category }) {
       setData(json);
     }
     fetchData();
-  }, []);
+  }, [category]);
 
   if (error) {
-    return (
-      <p>Villa kom upp: {error}</p>
-    );
+    return <p>Villa kom upp: {error}</p>;
   }
 
   if (loading) {
-    return (
-      <p>Sæki gögn...</p>
-    );
+    return <p>Sæki gögn...</p>;
   }
 
-  console.log(data);
+  const news = Array.from(data);
 
   return (
-    <p>Bla</p>
-  ); 
+    <div>
+      <h2>{news.title}</h2>
+      <ul>
+        { // news.items.map((item) => {
+          //   return <li></li>;
+          // })
+        }
+      </ul>
+      <p><NavLink to='/'>Allar fréttir</NavLink></p>
+    </div>
+  );
 }

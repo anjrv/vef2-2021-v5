@@ -1,5 +1,19 @@
 # Vefforritun 2, 2021, verkefni 5
 
+[Heroku](https://vef2-2021-v5.herokuapp.com/).
+
+### Unnin af: Jaan Jaerving // JAJ20
+
+Sett upp með `create-react-app`.
+
+Keyrt með:
+* Setja `REACT_APP_API_URL` í `.env`
+* `npm install` Til að sækja öll dependencies
+* `npm start` Til að keyra def umhverfi
+* `npm run lint` Keyrir eslint
+
+# Verkefnislýsing
+
 [Kynning á verkefni](https://youtu.be/EyRD1dVVDiU).
 
 ## Routing

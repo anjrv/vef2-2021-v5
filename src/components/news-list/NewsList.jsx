@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { News } from '../news/News'
+import { News } from "../news/News";
+import s from "./NewsList.module.scss";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -20,6 +21,10 @@ export function NewsList() {
         const result = await fetch(apiUrl);
 
         if (!result.ok) {
+          if (result.status === 404) {
+            setError("404 fannst ekki");
+            return;
+          }
           throw new Error("Result ekki í lagi");
         }
 
@@ -48,10 +53,10 @@ export function NewsList() {
   console.log(newslist);
 
   return (
-    <div>
+    <div className={s.newslist__row}>
       {newslist.map((item) => {
         return (
-          <div>
+          <div className={s.newslist__col}>
             <News category={item.id} quantity={5} expandable={true} />
           </div>
         );

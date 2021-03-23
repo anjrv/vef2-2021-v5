@@ -12,7 +12,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={Index} />
           <Route exact path="/:id" component={NewsPage} />
-          <Route component={NotFound} />
+          <Route path="*" component={NotFound} />
         </Switch>
       </div>
     </Layout>

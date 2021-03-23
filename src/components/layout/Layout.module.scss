@@ -1,0 +1,22 @@
+.layout { 
+    &__header {
+      padding: 0 1rem;
+    }
+  
+    &__main {
+      padding: 0 1rem;
+    }
+
+    &__main::after {
+      border-bottom: 1px solid #000;
+      content: '';
+      display: block;
+      padding-top: 20px;
+    }
+
+    &__footer {
+      margin-top: 20px;
+      padding: 0 1rem;
+    }
+  }
+  

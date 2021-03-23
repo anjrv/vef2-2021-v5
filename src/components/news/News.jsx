@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import s from "./News.module.scss";
+
 const apiUrl = process.env.REACT_APP_API_URL;
 
 News.propTypes = {
@@ -34,6 +36,10 @@ export function News({ category, quantity, expandable }) {
         const result = await fetch(`${apiUrl}${category}`);
 
         if (!result.ok) {
+          if(result.status === 404) {
+            setError("404: Fannst ekki.");
+            return;
+          }
           throw new Error("Result ekki í lagi");
         }
 
@@ -71,26 +77,26 @@ export function News({ category, quantity, expandable }) {
     }
 
     return (
-      <div>
+      <div className={s.news}>
         <h2>{data.title}</h2>
-        <ul>
+        <ul className={s.news__list}>
           {articles.map((item) => {
             return (
-              <li>
-                <a href={item.link}>{item.title}</a>
+              <li className={s.news__listitem}>
+                <a className={s.news__ref} href={item.link}>{item.title}</a>
               </li>
             );
           })}
         </ul>
-        <p>
+        <b>
           <Link
-            to={{
+            className={s.news__routeref} to={{
               pathname: nextPath,
             }}
           >
             {expandable ? "Allar fréttir" : "Til baka"}
           </Link>
-        </p>
+        </b>
       </div>
     );
   }

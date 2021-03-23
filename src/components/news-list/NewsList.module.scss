@@ -1,0 +1,12 @@
+.newslist {
+  &__row {
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+  }
+
+  &__col {
+    width: 30%;
+    margin: 10px;
+  }
+}

@@ -1,0 +1,25 @@
+.news {
+    background-color: #f5f3e3;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 0px 20px 20px 20px;
+    
+    &__ref, &__routeref {
+        color: black;
+    }
+
+    &__routeref {
+        text-decoration: none;
+    }
+
+    &__list {
+        width: 100%;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    &__listitem {
+        margin-bottom: 5px;
+    }
+}
+  

@@ -37,7 +37,7 @@ export function News({ category, quantity, expandable }) {
 
         if (!result.ok) {
           if(result.status === 404) {
-            setError("404: Fannst ekki.");
+            setError("404: Fannst ekki");
             return;
           }
           throw new Error("Result ekki í lagi");

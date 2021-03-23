@@ -5,7 +5,7 @@ export function NotFound() {
   return (
     <div>
       <Helmet title="Síða fannst ekki" />
-      <h1>404 fannst ekki</h1>
+      <h1>404: Fannst ekki</h1>
     </div>
   );
 }

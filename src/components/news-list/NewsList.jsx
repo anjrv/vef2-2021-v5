@@ -22,7 +22,7 @@ export function NewsList() {
 
         if (!result.ok) {
           if (result.status === 404) {
-            setError("404 fannst ekki");
+            setError("404: Fannst ekki");
             return;
           }
           throw new Error("Result ekki í lagi");

@@ -9,7 +9,7 @@ Sett upp með `create-react-app`.
 Keyrt með:
 * Setja `REACT_APP_API_URL` í `.env`
 * `npm install` Til að sækja öll dependencies
-* `npm start` Til að keyra def umhverfi
+* `npm start` Til að keyra developer umhverfi
 * `npm run lint` Keyrir eslint
 
 # Verkefnislýsing
